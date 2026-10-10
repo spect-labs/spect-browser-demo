@@ -1,0 +1,17 @@
+# Taste
+- Prefers using existing daisyUI components (e.g., `alert`, `link`) instead of hand-rolled markup whenever an equivalent component exists. Confidence: 0.85
+- For HTML-only changes, do not run the project build to verify. Confidence: 0.7
+- When the user pastes a markup/code snippet, insert it essentially as-is (verbatim, correct indentation) rather than rewriting or restyling it. Confidence: 0.7
+- Prefers global/utility controls (e.g., a theme switcher) anchored to the right end of the navbar. Confidence: 0.5
+- Prefers translucent, low-opacity color variants (soft/tinted) over solid saturated colors for badges and chips. Confidence: 0.7
+- Prefers related UI elements grouped/adjacent (e.g., a status chip next to its label) rather than spread to opposite edges of a bar. Confidence: 0.5
+- Wants all states/variants of the same component to share identical geometry and padding, with outlines/borders mirrored in each variant's own color rather than styled differently. Confidence: 0.6
+- Prefers TypeScript over plain JavaScript for source files (converts existing `src/*.js` to `.ts`). Confidence: 0.75
+- Prefers application logic centralized in the `src/main.ts` module entry point (external script) rather than inline `<script>` blocks in HTML. Confidence: 0.6
+- Prefers encapsulating related functions in a class with a clean, typed public API surface, hiding implementation plumbing behind private members (SDK-style design) rather than exposing loose functions. Confidence: 0.75
+- Prefers session-dependent content to be hidden until it becomes relevant rather than always visible but disabled — this applies not just to buttons but to whole sections including their headings and descriptive text (e.g., a "Connect Satellite" button, session info text, and a Stop button all appear only once a session is started). Confidence: 0.7
+- Keeps the primary/entry-point action (e.g., a Start Session button) always visible and reachable, gating only the content that depends on the resulting state instead of hiding the entire container. Confidence: 0.5
+- Prefers an inline SVG icon as a prefix inside buttons, sized to the button rather than oversized. Confidence: 0.5
+- Prefers relying on the platform's built-in/native features (invoking the provided API) rather than reimplementing or duplicating them with custom UI. Confidence: 0.65
+- Prefers a stable, jitter-free layout: keeps paired controls (e.g., Start and Stop Session) always visible as an aligned pair (disabling the inactive one) so they never shift or jump as state changes. Confidence: 0.55
+- Prefers dependent/secondary UI (e.g., a session info text block and a Connect Satellite button) stacked below the primary control row rather than inline beside it. Confidence: 0.5
