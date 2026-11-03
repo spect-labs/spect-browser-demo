@@ -3,26 +3,20 @@ interface SpectBlockResult {
   blockMode: boolean;
 }
 
-interface SpectQRCode {
-  url: string;
-  qrCode: string;
-}
-
 interface SpectApi {
   __spectMock?: boolean;
   blockwindow(): Promise<SpectBlockResult>;
   unblockwindow(): Promise<SpectBlockResult>;
   isBlocked(): Promise<boolean>;
-  getQRCode(): Promise<SpectQRCode>;
+  getExternalDisplayCount(): Promise<number>;
   getHiddenProcesses(): Promise<unknown[]>;
   getSuspiciousProcess(): Promise<unknown[]>;
   getStats(): Promise<Record<string, unknown>>;
   getStreamAll(): Promise<unknown[]>;
-  getDisplays?(): Promise<unknown[]>;
-  getDisplaysAndSources?(): Promise<unknown[]>;
   satellite: {
+    openQRCodeModal(): Promise<void>;
+    closeQRCodeModal(): Promise<void>;
     getLiveStream(): Promise<string | null>;
-    getStreams(): Promise<unknown[]>;
     getStreamUrl(): Promise<string>;
   };
 }

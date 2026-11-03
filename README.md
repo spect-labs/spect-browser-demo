@@ -47,13 +47,13 @@ Add `&mockSuspicious=1` to simulate a suspicious process being detected (trigger
 | `Spect.blockwindow()` | Lockdown is engaged when the test starts and re-engaged if it drops |
 | `Spect.unblockwindow()` | Released on submit / termination |
 | `Spect.isBlocked()` | Polled every 5 s; being unblocked during the test is a high-severity violation |
-| `Spect.getQRCode()` | Pairing modal — QR image + URL, with polling for the connection |
-| `Spect.satellite.getStreams()` | Detects an already-paired phone and watches for disconnects |
-| `Spect.satellite.getLiveStream()` | Attaches the live phone video (via `captureStream()`, falling back to adopting the native `<video>` element) |
+| `Spect.satellite.openQRCodeModal()` | Opens the pairing modal on the QR image + URL |
+| `Spect.satellite.closeQRCodeModal()` | Closes the pairing modal once the phone is paired |
+| `Spect.satellite.getLiveStream()` | Polled for the live phone video, then attached (via `captureStream()`, falling back to adopting the native `<video>` element) |
 | `Spect.satellite.getStreamUrl()` | Available through the bridge for FLV playback fallbacks |
 | `Spect.getSuspiciousProcess()` | Polled every 5 s — any click-through/capture-hidden process is a high-severity violation |
 | `Spect.getHiddenProcesses()` | Polled and recorded in the proctoring log |
-| `Spect.getStats()`, `Spect.display.*`, `Spect.getStreamAll()` | Exposed through `js/spect-bridge.js` for further extension |
+| `Spect.getExternalDisplayCount()`, `Spect.getStats()`, `Spect.getStreamAll()` | Exposed through `src/spect-bridge.ts` for further extension |
 
 All Spect calls go through `js/spect-bridge.js`, which feature-detects the API and fails soft (the demo still runs,
 in “limited mode”, in a normal browser).

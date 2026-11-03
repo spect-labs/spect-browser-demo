@@ -28,8 +28,8 @@ export class Spect {
     return this.call('isBlocked');
   }
 
-  getQRCode(): Promise<SpectQRCode | null> {
-    return this.call('getQRCode');
+  getExternalDisplayCount(): Promise<number | null> {
+    return this.call('getExternalDisplayCount');
   }
 
   getHiddenProcesses(): Promise<unknown[] | null> {
@@ -48,14 +48,10 @@ export class Spect {
     return this.call('getStreamAll');
   }
 
-  readonly display = {
-    getDisplays: (): Promise<unknown[] | null> => this.call('display.getDisplays'),
-    getDisplaysAndSources: (): Promise<unknown[] | null> => this.call('display.getDisplaysAndSources')
-  };
-
   readonly satellite = {
+    openQRCodeModal: (): Promise<unknown> => this.callSatellite('openQRCodeModal'),
+    closeQRCodeModal: (): Promise<unknown> => this.callSatellite('closeQRCodeModal'),
     getLiveStream: (): Promise<string | null> => this.callSatellite('getLiveStream'),
-    getStreams: (): Promise<unknown[] | null> => this.callSatellite('getStreams'),
     getStreamUrl: (): Promise<string | null> => this.callSatellite('getStreamUrl')
   };
 

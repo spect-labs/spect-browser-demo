@@ -15,3 +15,7 @@
 - Prefers relying on the platform's built-in/native features (invoking the provided API) rather than reimplementing or duplicating them with custom UI. Confidence: 0.65
 - Prefers a stable, jitter-free layout: keeps paired controls (e.g., Start and Stop Session) always visible as an aligned pair (disabling the inactive one) so they never shift or jump as state changes. Confidence: 0.55
 - Prefers dependent/secondary UI (e.g., a session info text block and a Connect Satellite button) stacked below the primary control row rather than inline beside it. Confidence: 0.5
+- Wants data/results rendered as "beautiful but minimal" cards (daisyUI `card` in a responsive grid) with the meaningful fields surfaced, rather than raw text or a JSON dump. Confidence: 0.6
+- Prefers values kept in full and untruncated — long paths/monospace content in a muted `bg-base-200` block that wraps (`break-all`). Confidence: 0.55
+- Dislikes redundant/derived fields in UI: wants each record to show only its source fields (e.g., a process's `name` and `fullPath`), removing computed extras such as a basename extracted from the path. Confidence: 0.7
+- Wants externally-configurable values such as URLs kept in `.env` variables and referenced via the framework's HTML env placeholders (e.g. Vite `%VITE_*%`) rather than hardcoded in markup — and expects the agent to know/fix the mechanism instead of explaining it to him. Confidence: 0.6

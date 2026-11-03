@@ -36,7 +36,9 @@
       "Shell(BUNDLE=\"$(readlink -f dist/assets/index-*.js)\"; echo \"bundle: $BUNDLE\"; echo '=== mock Spect (?spectMock=1) ==='; node \"$COMMANDCODE_SCRATCHPAD/smoke.mjs\" '?spectMock=1' \"$BUNDLE\"; echo '=== standard browser ==='; node \"$COMMANDCODE_SCRATCHPAD/smoke.mjs\" '' \"$BUNDLE\")",
       "Shell(SMOKE=/tmp/commandcode/1000/-home-mohit-Documents-spect-demo-site/f8fe2016-465c-4a73-994d-133e6e8fe3fb/scratchpad/smoke.mjs; BUNDLE=\"$(readlink -f dist/assets/index-*.js)\"; echo '=== mock Spect (?spectMock=1) ==='; node \"$SMOKE\" '?spectMock=1' \"$BUNDLE\"; echo '=== standard browser ==='; node \"$SMOKE\" '' \"$BUNDLE\")",
       "Shell(SMOKE=/tmp/commandcode/1000/-home-mohit-Documents-spect-demo-site/f8fe2016-465c-4a73-994d-133e6e8fe3fb/scratchpad/smoke-satellite.mjs; BUNDLE=\"$(readlink -f dist/assets/index-*.js)\"; echo '=== mock Spect (?spectMock=1) ==='; node \"$SMOKE\" '?spectMock=1' \"$BUNDLE\"; echo '=== standard browser ==='; node \"$SMOKE\" '' \"$BUNDLE\")",
-      "Shell(pnpm build 2>&1 | tail -3 && SMOKE=/tmp/commandcode/1000/-home-mohit-Documents-spect-demo-site/f8fe2016-465c-4a73-994d-133e6e8fe3fb/scratchpad/smoke-satellite.mjs && BUNDLE=\"$(readlink -f dist/assets/index-*.js)\" && echo '=== mock Spect (?spectMock=1) ===' && node \"$SMOKE\" '?spectMock=1' \"$BUNDLE\" && echo '=== standard browser ===' && node \"$SMOKE\" '' \"$BUNDLE\")"
+      "Shell(pnpm build 2>&1 | tail -3 && SMOKE=/tmp/commandcode/1000/-home-mohit-Documents-spect-demo-site/f8fe2016-465c-4a73-994d-133e6e8fe3fb/scratchpad/smoke-satellite.mjs && BUNDLE=\"$(readlink -f dist/assets/index-*.js)\" && echo '=== mock Spect (?spectMock=1) ===' && node \"$SMOKE\" '?spectMock=1' \"$BUNDLE\" && echo '=== standard browser ===' && node \"$SMOKE\" '' \"$BUNDLE\")",
+      "Shell(pnpm build 2>&1 | tail -3 && SMOKE=/tmp/commandcode/1000/-home-mohit-Documents-spect-demo-site/f8fe2016-465c-4a73-994d-133e6e8fe3fb/scratchpad/smoke-satellite.mjs && BUNDLE=\"$(readlink -f dist/assets/index-*.js)\" && node \"$SMOKE\" '?spectMock=1' \"$BUNDLE\")",
+      "Shell(npx tsc --noEmit)"
     ],
     "deny": [],
     "defaultMode": "default"

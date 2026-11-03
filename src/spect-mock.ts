@@ -9,48 +9,8 @@
     connected: false,
     videoEl: null as HTMLVideoElement | null,
     connectTimer: null as number | null,
-    startedAt: Date.now(),
     suspCount: 0
   };
-
-  function makeQRDataURL() {
-    const size = 29;
-    const cell = 8;
-    const pad = 4 * cell;
-    const canvas = document.createElement('canvas');
-    canvas.width = size * cell + pad * 2;
-    canvas.height = canvas.width;
-    const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
-    ctx.fillStyle = '#ffffff';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    let seed = 1234567;
-    const rand = function () {
-      seed = (seed * 1103515245 + 12345) % 2147483648;
-      return seed / 2147483648;
-    };
-    ctx.fillStyle = '#16121F';
-    for (let r = 0; r < size; r++) {
-      for (let c = 0; c < size; c++) {
-        const inFinder = (r < 8 && c < 8) || (r < 8 && c >= size - 8) || (r >= size - 8 && c < 8);
-        if (inFinder) continue;
-        if (rand() > 0.52) {
-          ctx.fillRect(pad + c * cell, pad + r * cell, cell - 1, cell - 1);
-        }
-      }
-    }
-    function finder(x: number, y: number) {
-      ctx.fillStyle = '#16121F';
-      ctx.fillRect(x, y, 7 * cell, 7 * cell);
-      ctx.fillStyle = '#ffffff';
-      ctx.fillRect(x + cell, y + cell, 5 * cell, 5 * cell);
-      ctx.fillStyle = '#16121F';
-      ctx.fillRect(x + 2 * cell, y + 2 * cell, 3 * cell, 3 * cell);
-    }
-    finder(pad, pad);
-    finder(pad + (size - 7) * cell, pad);
-    finder(pad, pad + (size - 7) * cell);
-    return canvas.toDataURL('image/png');
-  }
 
   function makePhoneStream() {
     const canvas = document.createElement('canvas');
@@ -121,11 +81,8 @@
       return state.blocked;
     },
 
-    getQRCode: async function () {
-      if (!state.connectTimer) {
-        state.connectTimer = setTimeout(function () { state.connected = true; }, 6000);
-      }
-      return { url: 'http://192.168.1.42:8823', qrCode: makeQRDataURL() };
+    getExternalDisplayCount: async function () {
+      return 0;
     },
 
     getHiddenProcesses: async function () {
@@ -150,30 +107,25 @@
       return [];
     },
 
-    getDisplays: async function () {
-      return [
-        { type: 'physicalDisplay', count: 1, items: [{ id: '82', name: 'Entire screen' }] },
-        { type: 'capturerScreenSource', count: 1, items: [{ id: 'screen:394:0', name: 'Entire screen' }] },
-        { type: 'capturerWindowSource', count: 1, items: [{ id: 'window:1', name: 'Editor' }] }
-      ];
-    },
-
-    getDisplaysAndSources: async function () {
-      return [
-        { type: 'physicalDisplay', count: 1, items: [{ id: '82', name: 'Entire screen' }] },
-        { type: 'capturerScreenSource', count: 1, items: [{ id: 'screen:394:0', name: 'Entire screen' }] }
-      ];
-    },
-
     satellite: {
+      openQRCodeModal: async function () {
+        if (state.connected || state.connectTimer) return;
+        state.connectTimer = setTimeout(function () {
+          state.connected = true;
+          state.connectTimer = null;
+        }, 6000);
+      },
+
+      closeQRCodeModal: async function () {
+        if (state.connectTimer) {
+          clearTimeout(state.connectTimer);
+          state.connectTimer = null;
+        }
+      },
+
       getLiveStream: async function () {
         if (!state.connected) return null;
         return ensureVideoEl();
-      },
-
-      getStreams: async function () {
-        if (!state.connected) return [];
-        return [{ id: 'muu4dchy9sn10mpr', path: '/live/stream', app: 'live', name: 'stream', startedAt: state.startedAt }];
       },
 
       getStreamUrl: async function () {
